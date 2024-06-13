@@ -1,0 +1,283 @@
+/* teams container style */
+#teams {
+  background-color: #002242;
+  padding-bottom: 5vh;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  background-color: #bcbcbc;
+  color: rgb(0, 0, 0);
+  position: relative;
+	border-radius: 5px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+  border: 0.5px solid #717e86;
+  border-radius: 5px;
+  padding: 2px;
+  transition: box-shadow 0.3s ease;
+  width: 23vw;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  display: inline-block;
+  vertical-align: top;
+  margin: auto;
+}
+.card:hover {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+.proj-name{
+  color: #231E39;
+	background-color: #ffffff;
+	border-radius: 3px;
+	font-weight: bold;
+	padding: 3px 7px;
+}
+.btn-color{
+	background-color: #010101;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #ffffff;
+}
+.btn-color:hover{
+  color: #000000;
+	background-color: #ffffff; 
+}
+.hidden {
+  display: none;
+}
+.navbar-toggler {
+  z-index: 9999; /* or any value higher than the z-index of other elements */
+}
+@media only screen and (max-width: 767px) {
+  .card {
+    height: 95%;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    width: 47vw;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: top;
+    margin: auto;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .card {
+    height: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 90vw; /* Fixed width for each card */
+    margin-right: 20px; /* Space between cards */
+    display: inline-block; /* Display cards in a row */
+    vertical-align: top;
+    margin: auto; /* Align cards to the top */
+  }
+
+  .card-container {
+    display: block !important;
+  }
+}
+#noTeamsMessage{
+  background-color: whitesmoke;
+  color: #231E39;
+  font-weight: 600;
+text-align: center;
+font-family: 'Courier New', Courier, monospace;}
+/* end of projects container style */
+/* navabar and footer */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#nav-container{
+  background-color: #012E94 !important;
+
+  background-size: contain;
+background-repeat: no-repeat;
+  height: 10vh;
+}
+
+
+.navbar {
+  background-color: #012E94 !important;
+  background-size: contain;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-item {
+  font-weight: 500;
+  /* font-weight: bold; */
+  height: 9vh;
+  width: 10vw;
+  text-align: center;
+}
+.navbar-nav{
+  width: 100%;
+  z-index: 9999 !important;
+  color: #fff;
+  opacity: 0.9;
+
+}
+
+.navbar-nav >li>a{
+  color: #fff;
+
+}
+.logo-img {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar-nav .nav-item {
+  position: relative;
+}
+
+.navbar-nav .nav-item::after {
+  content: "";
+  position: absolute;
+  left: 2vw;
+  bottom: 2vh; /* يمكنك تعديل هذا الرقم حسب الاحتياجات */
+  width: 70%;
+  height: 2px;
+  background-color: rgb(255, 255, 255); /* يمكنك تغيير لون الخط هنا */
+  transform-origin: bottom right;
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.navbar-nav .nav-item:hover::after {
+  transform-origin: bottom left;
+  transform: scaleX(1);
+}
+
+.navbar-nav .nav-item a.nav-link {
+  color: white;
+  text-decoration: none;
+}
+.log-btn{
+  margin-left: auto;
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .logo-img {
+    width: 50px;
+    height: 50px;
+  }
+  .nav-item {
+    font-weight: 500;
+    /* font-weight: bold; */
+    height: 9vh;
+    width: 100%;
+    text-align: center;
+  }
+  .navbar-nav .nav-item::after {
+    content: "";
+    position: absolute;
+    left:40%;
+    right: 40%;
+    bottom: 2vh; /* يمكنك تعديل هذا الرقم حسب الاحتياجات */
+    width: 20%;
+    height: 2px;
+    background-color: rgb(255, 255, 255); /* يمكنك تغيير لون الخط هنا */
+    transform-origin: bottom right;
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+  }
+  
+  .navbar-nav .nav-item:hover::after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+  }
+}
+/* end of navbar css */
+
+/* ************************************************************************ */
+/* footer css */
+
+.responsiveText {
+  color: rgb(12, 170, 220);
+  font-size: 2vw;
+}
+
+.responsiveLink {
+  color: rgb(202, 198, 198);
+  text-decoration: none;
+  font-size: 1.8vw;
+}
+.responsiveLink:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+#logo-img {
+  width: 200px !important;
+  height: 150px;
+}
+.up-btn{
+  font-size: 15px !important;
+}
+@media only screen and (max-width: 768px) {
+  .responsiveText {
+    font-size: 3.2vw;
+  }
+
+  .responsiveLink {
+    text-decoration: none;
+    font-size: 2.2vw;
+  }
+  .logo-img {
+    width: 60px !important;
+    height: 70px;
+  }
+  #logo-img {
+    width: 150px !important;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .responsiveText {
+    font-size: 3.8vw;
+  }
+
+  .responsiveLink {
+    font-size: 3.5vw;
+  }
+  #share a {
+    width: 25px !important;
+    height: 25px !important;
+    display: inline-block;
+    margin: 5px;
+    border-radius: 50%;
+    font-size: 7px !important;
+    color: #fff;
+    opacity: 0.75;
+    transition: opacity 0.15s linear;
+  }
+  #logo-img {
+    width: 150px !important;
+    height: 150px;
+  }
+  .logo-img {
+    width: 60px !important;
+    height: 50px;
+  }
+  .fa {
+    font-size: 10px !important;
+  }
+  .up-btn{
+    font-size: 10px !important;
+  }
+}
+
+
+/* end of footer */
