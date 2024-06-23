@@ -20,10 +20,6 @@ class Teaching_Assistant extends Authenticatable
     {
         return $this->belongsTo(Supervisor::class,'supervisor_id');
     }
-    public function Student_Team()
-    {
-        return $this->hasMany(Student_Team::class,'teaching_assistant_id');
-    }
     public function apply()
     {
         return $this->hasMany(Apply::class,'teaching_assistants_id');
@@ -31,5 +27,9 @@ class Teaching_Assistant extends Authenticatable
     public function student_projects()
     {
         return $this->hasMany(StudentProject::class,'teaching_assistant_id');
+    }
+    public function team_request()
+    {
+        return $this->hasMany(TeamRequest::class,'teaching_id');
     }
 }

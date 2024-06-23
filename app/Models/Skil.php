@@ -14,4 +14,8 @@ class Skil extends Model
     {
         return $this->hasMany(StudentSkil::class,'skil_id');
     }
+    public function tag()
+    {
+        return $this->hasMany(ProjectTag::class,'skil_id');
+    }
 }

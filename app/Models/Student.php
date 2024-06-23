@@ -46,4 +46,8 @@ class Student extends Authenticatable
     {
         return $this->hasMany(StudentSkil::class,'student_id');
     }
+    public function team_member()
+    {
+        return $this->hasMany(Team_Member::class,'student_id');
+    }
 }

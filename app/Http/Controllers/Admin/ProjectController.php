@@ -16,7 +16,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::whereHas('center')->whereHas('supervisor')->paginate(10);
+        $projects = Project::whereHas('center')->whereHas('supervisor')->whereHas('team')->paginate(10);
         return view('admin.projects.index',compact('projects'));
     }
     public function create()
@@ -46,7 +46,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $record->update([
             'center_id'       => $request->center_id       ? $data['center_id']       : $record->center_id,
-            
+            'team_id'         => $request->team_id         ? $data['team_id']         : $record->team_id,
             'supervisor_id'   => $request->supervisor_id   ? $data['supervisor_id']   : $record->supervisor_id,
             'title'           => $request->title           ? $data['title']           : $record->title,
             'description'     => $request->description     ? $data['description']     : $record->description,

@@ -7,7 +7,9 @@ use App\Http\Requests\Admin\Project\StoreRequest;
 use App\Http\Requests\Admin\Project\UpdateRequest;
 use App\Models\Center;
 use App\Models\Project;
+use App\Models\ProjectTag;
 use App\Models\Proposal;
+use App\Models\Skil;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,47 +18,43 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::whereHas('center')->whereHas('supervisor')->where('supervisor_id',Auth::guard('supervisor')->user()->id)->paginate(10);
+        $projects = Project::whereHas('center')->whereHas('supervisor')->whereHas('team')->where('supervisor_id',Auth::guard('supervisor')->user()->id)->paginate(10);
         return view('supervisor.projects.index',compact('projects'));
     }
     public function create()
     {
         $centers = Center::all();
-        $teams = Team::all();
-        return view('supervisor.projects.create',compact('centers','teams'));
+        $teams = Team::whereHas('supervisor')->get();
+        $skils = Skil::all();
+        return view('supervisor.projects.create',compact('centers','teams','skils'));
     }
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
         $data['supervisor_id'] = Auth::guard('supervisor')->user()->id;
-        Project::create($data);
-        return redirect()->route('supervisor.projects.index')->with(['success' => 'Store Project Successfully']);
-    }
-    public function change_status(Request $request)
-    {
-        $data = $request->validate([
-            'status' => 'required|not_in:Select Projects Status',
+        $data['skil_id'] = $request->skil_id;
+        $store = Project::create([
+            'center_id' => $data['center_id'],
+            'team_id' => $data['team_id'],
+            'supervisor_id' => $data['supervisor_id'],
+            'title' => $data['title'],
+            'description' => $data['description'],
         ]);
-        $projects = Project::whereHas('supervisor')->where('supervisor_id',Auth::guard('supervisor')->user()->id)->get();
-        foreach($projects as $row)
-        {
-            if($data['status'] == 1) {
-                $row->update([
-                    'status' => '1'
-                ]);
-            } elseif($data['status'] == 0) {
-                $row->update([
-                    'status' => '0'
-                ]);
-            }
-            return redirect()->back();
+        if($data['skil_id']) {
+            foreach($data['skil_id'] as $row)
+            ProjectTag::create([
+                'project_id' => $store->id,
+                'skill_id' => $row
+            ]);
         }
+        return redirect()->route('supervisor.projects.index')->with(['success' => 'Store Project Successfully']);
     }
     public function edit($id)
     {
         $record = Project::find($id);
         $centers = Center::all();
-        return view('supervisor.projects.edit',compact('record','centers'));
+        $teams = Team::whereHas('supervisor')->get();
+        return view('supervisor.projects.edit',compact('record','centers','teams'));
     }
     public function update(UpdateRequest $request , $id)
     {
@@ -64,6 +62,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $record->update([
             'center_id'       => $request->center_id       ? $data['center_id']       : $record->center_id,
+            'team_id'         => $request->team_id         ? $data['team_id']         : $record->team_id,
             'title'           => $request->title           ? $data['title']           : $record->title,
             'description'     => $request->description     ? $data['description']     : $record->description,
         ]);

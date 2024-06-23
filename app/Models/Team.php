@@ -14,10 +14,14 @@ class Team extends Model
     {
         return $this->belongsTo(Supervisor::class,'supervisor_id');
     }
-    
+
     public function team_member()
     {
         return $this->hasMany(Team_Member::class,'team_id');
+    }
+    public function project()
+    {
+        return $this->hasMany(Project::class,'team_id');
     }
     public function members()
     {

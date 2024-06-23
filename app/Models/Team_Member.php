@@ -26,5 +26,9 @@ class Team_Member extends Model
     {
         return $this->belongsTo(Project::class,'project_id');
     }
+    public function student()
+    {
+        return $this->belongsTo(Student::class,'student_id');
+    }
 
 }

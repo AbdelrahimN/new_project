@@ -37,7 +37,7 @@ class TeachingAssistantController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $data['password'] = Hash::make($request->pasword);
+        $data['password'] = Hash::make($request->password);
         Teaching_Assistant::create($data);
         return redirect()->route('admin.TeachingAssistants.index')->with(['success' => 'Store TeachingAssistant Successfully']);
     }

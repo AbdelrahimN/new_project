@@ -29,6 +29,7 @@ class RegisterRequest extends FormRequest
             'password'        => 'required',
             'phone'           => 'required|numeric|unique:students,phone',
             'image'           => 'required',
+            'gpa'             => 'required'
         ];
     }
 }

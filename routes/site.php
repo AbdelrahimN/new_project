@@ -39,8 +39,9 @@ Route::name('site.')->prefix('site')->middleware('site')->group(function(){
 
 
 Route::name('site.')->prefix('site')->middleware('site')->group(function(){
-    Route::get('teams',[TeamController::class,'index'])->name('team.index');
-    Route::get('student/teams',[TeamController::class,'student_teme'])->name('student.team');
+    Route::get('student/teams',[TeamController::class,'index'])->name('team.index');
+    Route::get('supervisor/teams',[TeamController::class,'supervisor_teme'])->name('team.supervisor');
+    Route::get('supervisor/teams/join/{id}',[TeamController::class,'supervisor_join'])->name('team.supervisor.join');
     Route::get('teams/join/{id}',[TeamController::class,'join'])->name('team.join');
     Route::get('teams/create',[TeamController::class,'create'])->name('team.create');
     Route::post('teams/store',[TeamController::class,'store'])->name('team.store');

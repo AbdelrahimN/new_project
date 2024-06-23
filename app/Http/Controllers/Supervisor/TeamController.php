@@ -27,6 +27,26 @@ class TeamController extends Controller
         Team::create($data);
         return redirect()->route('supervisor.teams.index')->with(['success' => 'Store Team Successfully']);
     }
+    public function change_status(Request $request)
+    {
+        $data = $request->validate([
+            'status' => 'required|not_in:Select Team Status',
+        ]);
+        $projects = Team::whereHas('supervisor')->where('supervisor_id',Auth::guard('supervisor')->user()->id)->get();
+        foreach($projects as $row)
+        {
+            if($data['status'] == 1) {
+                $row->update([
+                    'status' => '1'
+                ]);
+            } elseif($data['status'] == 0) {
+                $row->update([
+                    'status' => '0'
+                ]);
+            }
+            return redirect()->back();
+        }
+    }
     public function edit($id)
     {
         $record = Team::find($id);

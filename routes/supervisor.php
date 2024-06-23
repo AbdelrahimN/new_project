@@ -28,6 +28,7 @@ Route::name('supervisor.')->prefix('supervisor')->middleware('checkSupervisor')-
     Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');
     Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
     Route::post('/teams/store', [TeamController::class, 'store'])->name('teams.store');
+    Route::post('/teams/change_status', [TeamController::class, 'change_status'])->name('teams.change_status');
     Route::get('/teams/edit/{id}', [TeamController::class, 'edit'])->name('teams.edit');
     Route::post('/teams/update/{id}', [TeamController::class, 'update'])->name('teams.update');
     Route::get('/teams/delete/{id}', [TeamController::class, 'delete'])->name('teams.delete');
@@ -37,7 +38,6 @@ Route::name('supervisor.')->prefix('supervisor')->middleware('checkSupervisor')-
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
     Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
     Route::post('/projects/store', [ProjectController::class, 'store'])->name('projects.store');
-    Route::post('/projects/change_status', [ProjectController::class, 'change_status'])->name('projects.change_status');
     Route::get('/projects/edit/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::post('/projects/update/{id}', [ProjectController::class, 'update'])->name('projects.update');
     Route::get('/projects/delete/{id}', [ProjectController::class, 'delete'])->name('projects.delete');

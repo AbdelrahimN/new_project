@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
             'name'             => 'required',
             'email'            => 'required|unique:teaching__assistants,email',
             'phone'            => 'required|numeric',
-            'role'             => 'required|not_in:Select Role',
+            'role'             => 'nullable|not_in:Select Role',
             'university_id'    => 'required|numeric',
             'password'         => 'required',
             'center_id'        => 'required|not_in:Select Center',

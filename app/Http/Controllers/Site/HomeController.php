@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function profile()
     {
         $record = Student::whereHas('center')->where('id', Auth::guard('student')->user()->id)->first();
-        $team = Student_Team::whereHas('teaching_assistant')->where('student_id', Auth::guard('student')->user()->id)->first();
+        $team = Student_Team::where('student_id', Auth::guard('student')->user()->id)->first();
         $doc = StudentDocument::whereHas('student')->where('student_id',Auth::guard('student')->user()->id)->first();
         $skils = StudentSkil::whereHas('skil')->whereHas('student')->where('student_id',Auth::guard('student')->user()->id)->get();
         return view('site.profile', compact('record', 'team','doc','skils'));

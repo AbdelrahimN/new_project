@@ -19,6 +19,10 @@ class Project extends Model
     {
         return $this->belongsTo(Supervisor::class,'supervisor_id');
     }
+    public function team()
+    {
+        return $this->belongsTo(Team::class,'team_id');
+    }
     public function proposals()
     {
         return $this->hasMany(Proposal::class,'project_id');
@@ -30,5 +34,9 @@ class Project extends Model
     public function request()
     {
         return $this->hasMany(ProjectRequest::class,'project_id');
+    }
+    public function tag()
+    {
+        return $this->hasMany(ProjectTag::class,'project_id');
     }
 }

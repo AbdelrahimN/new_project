@@ -20,9 +20,9 @@ class SupervisorController extends Controller
     }
     public function create()
     {
-        $roles = Role::all();
+        
         $centers = Center::all();
-        return view('admin.supervisors.create',compact('roles','centers'));
+        return view('admin.supervisors.create',compact('centers'));
     }
     public function store(StoreRequest $request)
     {

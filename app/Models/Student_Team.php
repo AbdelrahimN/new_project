@@ -14,10 +14,6 @@ class Student_Team extends Model
     {
         return $this->belongsTo(Student::class,'student_id');
     }
-    public function teaching_assistant()
-    {
-        return $this->belongsTo(Teaching_Assistant::class,'teaching_assistant_id');
-    }
     public function student_team_members()
     {
         return $this->hasMany(Student_Team_member::class,'student_team_id');
@@ -29,6 +25,10 @@ class Student_Team extends Model
     public function studet_tame_tasks()
     {
         return $this->hasMany(Studet_tame_task::class,'student_tame_id');
+    }
+    public function team_request()
+    {
+        return $this->hasMany(TeamRequest::class,'student_team_id');
     }
 }
 

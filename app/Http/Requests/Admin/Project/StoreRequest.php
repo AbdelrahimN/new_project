@@ -23,9 +23,11 @@ class StoreRequest extends FormRequest
     {
         return [
             'center_id'       => 'required|not_in:Select Center',
+            'team_id'         => 'required|not_in:Select Team',
             'supervisor_id'   => 'nullable|not_in:Select Supervisor',
             'title'           => 'required',
             'description'     => 'required',
+            'skil_id.*'         => 'nullable'
         ];
     }
 }
